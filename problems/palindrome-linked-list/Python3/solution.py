@@ -111,7 +111,7 @@ class Solution2:
             return result[c][1]
         
 
-class Solution:
+class Solution3:
     def length(self, head: Optional[ListNode]) -> int:
         result = 0
         node = head
@@ -149,6 +149,56 @@ class Solution:
         
         return result
 
+
+class Solution:
+    def prt(self, head: Optional[ListNode]):
+        n = head
+        while n:
+            print(n.val, end=' ')
+            n = n.next
+        print()
+
+    def length(self, head: Optional[ListNode]) -> int:
+        result = 0
+        node = head
+        while node:
+            result += 1
+            node = node.next
+        return result
+
+    def revert(self, head: Optional[ListNode], count: int) -> int:        
+        node = head
+        
+        c = 0
+        prev = None
+        next0 = None
+        while node and c != count:
+            next0 = node.next
+            node.next = prev
+            prev = node
+            node = next0
+            c += 1
+        
+        return prev, node
+
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        result = True
+
+        size = self.length(head)
+        head1, head2 = self.revert(head, int(size/2))
+
+        if size % 2:
+            head2 = head2.next
+
+        while head1:
+            if head1.val != head2.val:
+                result = False
+                break
+            head1 = head1.next
+            head2 = head2.next
+
+        return result
+        
 
 def validateInput(Node):
     assert 0 <= Node.val and Node.val <= 9

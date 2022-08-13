@@ -8,7 +8,7 @@ class ListNode:
         self.next = next
 
 
-class Solution:
+class Solution1:
     def lenOfList(self, head: Optional[ListNode]) -> int:
         n = head
         l = 0
@@ -50,6 +50,67 @@ class Solution:
         return result
 
 
+class Solution:
+    def prt(self, head: Optional[ListNode]):
+        n = head
+        while n:
+            print(n.val, end=' ')
+            n = n.next
+        print()
+
+    def eq(self, i, j):
+        result = True
+
+        if (i and not j) or (not i and j):
+            return False
+        
+        while True:
+
+            if i.val != j.val:
+                result = False
+                break
+
+            i = i.next
+            j = j.next
+
+            if not i and not j:
+                break
+            
+            if (i and not j) or (not i and j):
+                result = False
+                break
+        
+        return result
+
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        n = head
+        m = None
+        sz = 0
+        result = {}
+        while n:
+            sz += 1
+            m0 = m
+            m = n
+            n = n.next
+            m.next = m0
+
+            #self.prt(m)
+            if n and m:
+                e1, e2 = self.eq(n, m), self.eq(n.next, m)
+                result[sz] = [e1, e2]
+                #print(e1, e2)
+
+            result.pop(int(sz / 2) - 1, None)
+        
+        c = int(sz / 2)
+        if sz == 1:
+            return True
+        elif sz % 2 == 0:
+            return result[c][0]
+        else:
+            return result[c][1]
+        
+
 def validateInput(Node):
     assert 0 <= Node.val and Node.val <= 9
     return Node
@@ -68,4 +129,4 @@ if __name__ == '__main__':
 
     solution = Solution()
     for input in examples:
-        print("result = {}".format(solution.isPalindrome(validateInput(input))))
+        assert examples[input] == solution.isPalindrome(validateInput(input))

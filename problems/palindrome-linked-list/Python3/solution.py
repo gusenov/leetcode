@@ -50,7 +50,7 @@ class Solution1:
         return result
 
 
-class Solution:
+class Solution2:
     def prt(self, head: Optional[ListNode]):
         n = head
         while n:
@@ -111,6 +111,45 @@ class Solution:
             return result[c][1]
         
 
+class Solution:
+    def length(self, head: Optional[ListNode]) -> int:
+        result = 0
+        node = head
+        while node:
+            result += 1
+            node = node.next
+        return result
+
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        result = True
+
+        size = self.length(head)
+
+        start = int(size / 2)
+        if size % 2:
+            start += 1
+
+        s = []
+
+        node = head
+        i = 0
+        while i != start:
+            s.append(node.val)
+            node = node.next
+            i += 1
+        
+        if size % 2:
+            s.pop()
+
+        while node:
+            if node.val != s.pop():
+                result = False
+                break
+            node = node.next
+        
+        return result
+
+
 def validateInput(Node):
     assert 0 <= Node.val and Node.val <= 9
     return Node
@@ -129,4 +168,5 @@ if __name__ == '__main__':
 
     solution = Solution()
     for input in examples:
-        assert examples[input] == solution.isPalindrome(validateInput(input))
+        output = solution.isPalindrome(validateInput(input))
+        assert examples[input] == output

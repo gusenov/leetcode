@@ -1,7 +1,6 @@
-# [Challenges for New Users](https://leetcode.com/problem-list/challenges-for-new-users/)
-
 13. [Roman to Integer](roman-to-integer) Hash Table, Math, String
 234. [Palindrome Linked List](palindrome-linked-list) Linked List, Two Pointers, Stack, 1+
+344. [Reverse String](reverse-string) Two Pointers, String, Recursion
 383. [Ransom Note](ransom-note) Hash Table, String, Counting
 412. [Fizz Buzz](fizz-buzz) Math, String, Simulation
 876. [Middle of the Linked List](middle-of-the-linked-list) Linked List, Two Pointers

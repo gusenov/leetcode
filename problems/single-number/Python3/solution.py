@@ -38,9 +38,24 @@ from typing import List
 Наблюдение:
 23 - 6  = 17 - простое
 23 - 10 = 13 - простое
-23 - 7  = 16
+23 - 14  = 9
 
 Предположение: если разность суммы нечетных элементов и 2*twice[i] не простое число, то это искомый элемент.
+
+Опровержение:
+
+(1 + 1) + (3 + 3) + 5 = 13
+   2    +    6    + 5 = 13
+13 - 2 = 11 - простое
+13 - 6 = 7 - простое
+13 - 10 = 3 - простое
+
+(1 + 1) + (3 + 3) + 30001 = 30009
+   2    +    6    + 30001 = 30009
+30009 - 2 = 30007 - не простое
+30009 - 6 = 30003 - не простое
+30009 - 60002 = −29993 - не простое
+
 
 (1 + 1) + (3 + 3) + (-1) = 7
    2    +    6    + (-1) = 7
@@ -72,7 +87,7 @@ from typing import List
 '''
 
 
-class Solution:
+class Solution1:
     def is_prime(self, n):
         # Число 1 — не является ни простым, ни составным числом, так как у него только один делитель — 1. 
         # Именно этим оно отличается от всех остальных натуральных чисел. 
@@ -101,30 +116,61 @@ class Solution:
 
         j = 0 if r else 1
 
-        odd_sum, odd_cnt = 0, 0
+        odd_sum, odd_cnt, last = 0, 0, 0
 
         base = 3 * pow(10, 4)
 
         i = 0
         while i < l:
             if r == nums[i] % 2:
-                odd_sum += nums[i] + (j if nums[i] > 0 else -j)
+                last = nums[i]
+                m = last if last >= 0 else base + abs(last)
+                odd_sum += m + j
                 odd_cnt += 1
             i += 1
 
         print("Odd sum = {}, cnt = {}".format(odd_sum, odd_cnt))
         if 1 == odd_cnt:
-            result = odd_sum if r else odd_sum - (j if odd_sum > 0 else -j)
+            result = last
         else:
             i = 0
             while i < l:
                 if r == nums[i] % 2:
-                    n = nums[i] + (j if nums[i] > 0 else -j)
+                    m = nums[i] if nums[i] >= 0 else base + abs(nums[i])
+                    n = m + j
                     if not self.is_prime(odd_sum - (2 * n)):
                         result = nums[i]
                         break
                 i += 1
         
+        return result
+
+
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+
+        # 1 1 2
+        # 1 2 2
+        sz = len(nums)
+        i = 1
+        while i <  sz:
+            if nums[i - 1] == nums[i]:
+                if i + 1 < sz:
+                    nums[i], nums[i + 1] = nums[i + 1], nums[i]
+                elif i - 2 >= 0:
+                    nums[i], nums[i - 2] = nums[i - 2], nums[i]
+            i += 1
+
+        print("Sorted: {}".format(nums))
+        
+        result = 0
+        i = 0
+        while i <  sz:
+            if i % 2:
+                result -= nums[i]
+            else:
+                result += nums[i]
+            i += 1
         return result
 
 
@@ -156,14 +202,13 @@ def validate(nums: List[int]):
 if __name__ == "__main__":
     sol = Solution()
 
-    examples = [ 
-        [ [-1, -1, -2], -2 ]
-    ]
     examples = [
         [ [2,2,1], 1 ],
         [ [4,1,2,1,2], 4 ],
         [ [1], 1 ],
 
+        [ [1,1,2], 2 ],
+        [ [1,2,2], 1 ],
         [ [2,2,4,4,6], 6 ],
         [ [2,2,4,4,1], 1],
         [ [2,2,4,4,9], 9],
@@ -171,16 +216,22 @@ if __name__ == "__main__":
         [ [3,3,5,5,7], 7 ],
         [ [5,3,3], 5 ],
         [ [1,1,2], 2 ],
+        [ [1,3,1,5,3], 5 ],
+        # [ [1,3,1,30001,3], 30001 ],
 
         [ [-1,-1,-2], -2 ],
         [ [1,3,1,-1,3], -1 ]
     ]
 
-
+    # examples = [  [ [1,3,1,30001,3], 30001 ]  ]
 
     for input, excpectedOutput in examples:
         print("Input: {}".format(input))
+        
+        
         actualOutput = sol.singleNumber(validate(input))
+        # actualOutput = sol.singleNumber(input)
+
         print("Output: {}".format(actualOutput))
         assert excpectedOutput == actualOutput
         print()

@@ -4,6 +4,7 @@
 108. [Convert Sorted Array to Binary Search Tree](convert-sorted-array-to-binary-search-tree) Array, Divide and Conquer, Tree, 2+
 118. [Pascal's Triangle](pascals-triangle) Array, Dynamic Programming
 136. [Single Number](single-number) Array, Bit Manipulation
+169. [Majority Element](majority-element) Array, Hash Table, Divide and Conquer, 2+
 191. [Number of 1 Bits](number-of-1-bits) Divide and Conquer, Bit Manipulation
 206. [Reverse Linked List](reverse-linked-list) Linked List, Recursion
 234. [Palindrome Linked List](palindrome-linked-list) Linked List, Two Pointers, Stack, 1+

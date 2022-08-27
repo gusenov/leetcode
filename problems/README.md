@@ -3,7 +3,8 @@
 104. [Maximum Depth of Binary Tree](maximum-depth-of-binary-tree) Tree, Depth-First Search, 2+
 108. [Convert Sorted Array to Binary Search Tree](convert-sorted-array-to-binary-search-tree) Array, Divide and Conquer, Tree, 2+
 118. [Pascal's Triangle](pascals-triangle) Array, Dynamic Programming
-136. [Single Number](https://leetcode.com/problems/single-number/) Array, Bit Manipulation
+136. [Single Number](single-number) Array, Bit Manipulation
+191. [Number of 1 Bits](number-of-1-bits) Divide and Conquer, Bit Manipulation
 206. [Reverse Linked List](reverse-linked-list) Linked List, Recursion
 234. [Palindrome Linked List](palindrome-linked-list) Linked List, Two Pointers, Stack, 1+
 237. [Delete Node in a Linked List](delete-node-in-a-linked-list) Linked List

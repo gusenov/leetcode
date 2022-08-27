@@ -9,6 +9,7 @@
 206. [Reverse Linked List](reverse-linked-list) Linked List, Recursion
 234. [Palindrome Linked List](palindrome-linked-list) Linked List, Two Pointers, Stack, 1+
 237. [Delete Node in a Linked List](delete-node-in-a-linked-list) Linked List
+242. [Valid Anagram](valid-anagram) Hash Table, String, Sorting
 344. [Reverse String](reverse-string) Two Pointers, String, Recursion
 383. [Ransom Note](ransom-note) Hash Table, String, Counting
 412. [Fizz Buzz](fizz-buzz) Math, String, Simulation
